@@ -1,0 +1,21 @@
+﻿<Window x:Class="TodoList.DeleteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TodoList"
+        mc:Ignorable="d"
+        Title="Suppression"  SizeToContent="WidthAndHeight">
+    <Grid>
+        <Label Content="Voulez vous vraiment supprimer cet ligne ?&#xD;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" Width="288" Height="26" Margin="10,10,0,0"/>
+        <Grid Height="54" VerticalAlignment="Top" Margin="10,41,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="deleteButton" Content="Supprimer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" Margin="0,7,0,0" Height="37" Click="DeleteButton_Click"/>
+            <Button x:Name="closeButton" Content="Annuler" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" Margin="10,7,0,0" Height="37" Click="CloseButton_Click" Grid.Column="1"/>
+
+        </Grid>
+    </Grid>
+</Window>
