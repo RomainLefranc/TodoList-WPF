@@ -20,15 +20,11 @@ namespace TodoList
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<Todo> Todos { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            todosList.ItemsSource = LoadCollectionData();
-        }
-
-        private List<Todo> LoadCollectionData()
-        {
-            List<Todo> todos = new List<Todo>
+            Todos = new List<Todo>
             {
                 new Todo()
                 {
@@ -69,11 +65,13 @@ namespace TodoList
                     Id = 6
                 }
             };
-
-            return todos;
+            LoadCollectionData();
         }
 
-
+        public void LoadCollectionData()
+        {
+            todosList.ItemsSource = Todos;
+        }
         private void SelectEdit_Click(object sender, RoutedEventArgs e)
         {
             Todo selectedTodo = (sender as FrameworkElement).DataContext as Todo;
@@ -84,8 +82,6 @@ namespace TodoList
             editWindow.description.Text = editWindow.todo.Description;
             editWindow.status.IsChecked = editWindow.todo.Status;
             _ = editWindow.ShowDialog();
-            
-
         }
 
         private void SelectDelete_Click(object sender, RoutedEventArgs e)

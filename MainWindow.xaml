@@ -5,15 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoList"
         mc:Ignorable="d"
-        Title="Todo list" Width="800" VerticalAlignment="Top">
+        Title="Todo list" Width="800" VerticalAlignment="Top" Height="287">
     <Grid>
-        <DataGrid x:Name="todosList" Margin="10,36,10,0" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="todosList" Margin="10,36,10,10" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
                 <DataGridTemplateColumn Header="Status">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-
                             <CheckBox Content="" IsChecked="{Binding Status}" IsHitTestVisible="False"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -34,7 +33,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Todo list" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="openCreateWindow" Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Margin="757,13,0,0" Click="OpenCreateWindow_Click"/>
+        <Label Content="Todo list" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Padding="0,5,5,5"/>
+        <Button x:Name="openCreateWindow" Content="Ajouter" VerticalAlignment="Top" Margin="704,11,10,0" Click="OpenCreateWindow_Click"/>
     </Grid>
 </Window>

@@ -28,20 +28,19 @@ namespace TodoList
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            todo.Description = description.Text;
-            todo.Status = status.IsChecked;
 
-            // update in db
-
-
+            // TODO : update in db
 
             // close window
-            // Close();
+            Close();
+
+            // TODO : refetch db data
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+            
         }
 
     }

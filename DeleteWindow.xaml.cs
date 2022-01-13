@@ -27,12 +27,11 @@ namespace TodoList
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            // delete in db
-
-
+            // TODO : delete in db
 
             // close window
-            // Close();
+            Close();
+            // TODO : refetch db data
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

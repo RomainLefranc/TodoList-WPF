@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoList"
         mc:Ignorable="d"
-        Title="Ajout" SizeToContent="WidthAndHeight">
+        Title="Ajout" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Grid>
         <Label Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Padding="0,5,5,5"/>
         <TextBox x:Name="description" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,36,10,0"/>

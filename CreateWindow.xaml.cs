@@ -19,7 +19,8 @@ namespace TodoList
     /// </summary>
     public partial class CreateWindow : Window
     {
-        public Todo todo;
+        public Todo Todo { get; set; }
+
         public CreateWindow()
         {
             InitializeComponent();
@@ -27,18 +28,16 @@ namespace TodoList
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            todo = new Todo()
+            Todo = new Todo()
             {
                 Description = description.Text,
                 Status = status.IsChecked,
                 Id = null
             };
-            // add to db
-
-
-
+            // TODO : add to db
             // close window
-            // Close();
+            Close();
+            // TODO : refetch db data
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
