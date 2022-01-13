@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TodoList
 {
@@ -20,82 +8,40 @@ namespace TodoList
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Todo> Todos { get; set; }
+        public static List<Todo> Todos;
         public MainWindow()
         {
             InitializeComponent();
-            Todos = new List<Todo>
-            {
-                new Todo()
-                {
-                    Description = "Gagner la LFL",
-                    Status = true,
-                    Id = 1
-                },
-
-                new Todo()
-                {
-                    Description = "Gagner les EUM",
-                    Status = true,
-                    Id = 2
-                },
-
-                new Todo()
-                {
-                    Description = "Aller en LEC",
-                    Status = false,
-                    Id = 3
-                },
-                new Todo()
-                {
-                    Description = "Gagner la LEC",
-                    Status = false,
-                    Id = 4
-                },
-                new Todo()
-                {
-                    Description = "Aller au World",
-                    Status = false,
-                    Id = 5
-                },
-                new Todo()
-                {
-                    Description = "Gagner les World",
-                    Status = false,
-                    Id = 6
-                }
-            };
-            LoadCollectionData();
+            LoadTodos();
         }
 
-        public void LoadCollectionData()
+        public void LoadTodos()
         {
+            Todos = SqliteDbAccess.LoadTodos();
+            todosList.ItemsSource = null;
             todosList.ItemsSource = Todos;
         }
         private void SelectEdit_Click(object sender, RoutedEventArgs e)
         {
             Todo selectedTodo = (sender as FrameworkElement).DataContext as Todo;
-            EditWindow editWindow = new EditWindow
-            {
-                todo = selectedTodo
-            };
-            editWindow.description.Text = editWindow.todo.Description;
-            editWindow.status.IsChecked = editWindow.todo.Status;
+            EditWindow editWindow = new EditWindow(selectedTodo);
             _ = editWindow.ShowDialog();
+            LoadTodos();
         }
 
         private void SelectDelete_Click(object sender, RoutedEventArgs e)
         {
             Todo selectedTodo = (sender as FrameworkElement).DataContext as Todo;
-            DeleteWindow deleteWindow = new DeleteWindow();
-            deleteWindow.todo = selectedTodo;
+            DeleteWindow deleteWindow = new DeleteWindow(selectedTodo);
             _ = deleteWindow.ShowDialog();
+            LoadTodos();
         }
 
         private void OpenCreateWindow_Click(object sender, RoutedEventArgs e)
         {
             CreateWindow createWindow = new CreateWindow();
             _ = createWindow.ShowDialog();
+            LoadTodos();
         }
     }
 }

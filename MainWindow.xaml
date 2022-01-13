@@ -5,35 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoList"
         mc:Ignorable="d"
-        Title="Todo list" Width="800" VerticalAlignment="Top" Height="287">
+        Title="Todo list" Width="418.359" VerticalAlignment="Top" Height="296.233">
     <Grid>
-        <DataGrid x:Name="todosList" Margin="10,36,10,10" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="todosList" Margin="10,36,10,0" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True" Height="210">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
-                <DataGridTemplateColumn Header="Status">
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" CanUserResize="False" CanUserReorder="False" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridCheckBoxColumn Header = "Terminé ?" Binding = "{Binding Status}" CanUserResize="False" CanUserReorder="False" >
+                    <DataGridCheckBoxColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
+                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridCheckBoxColumn.ElementStyle>
+                </DataGridCheckBoxColumn>
+                <DataGridTemplateColumn Header="Actions" CanUserResize="False" CanUserReorder="False" >
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment"
+                 Value="Center" />
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox Content="" IsChecked="{Binding Status}" IsHitTestVisible="False"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="selectEdit" Click="SelectEdit_Click" Margin="1,0,1,0" Width="60" Height="20" >Modifier</Button>
+                                <Button x:Name="selectDelete" Click="SelectDelete_Click" Width="60"  Height="20"  Margin="1,0,1,0" >Supprimer</Button>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Modifier">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="selectEdit" Click="SelectEdit_Click" >Modifier</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Supprimer">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="selectDelete" Click="SelectDelete_Click" >Supprimer</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Todo list" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Padding="0,5,5,5"/>
-        <Button x:Name="openCreateWindow" Content="Ajouter" VerticalAlignment="Top" Margin="704,11,10,0" Click="OpenCreateWindow_Click"/>
+        <Label Content="Todo list" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Padding="0" RenderTransformOrigin="0.551,-0.358" Height="20"/>
+        <Button x:Name="openCreateWindow" Content="Ajouter" VerticalAlignment="Top" Margin="0,11,10,0" Click="OpenCreateWindow_Click" HorizontalAlignment="Right" Width="84"/>
     </Grid>
 </Window>
