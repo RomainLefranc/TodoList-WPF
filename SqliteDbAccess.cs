@@ -23,7 +23,7 @@ namespace TodoList
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                _ = cnn.Execute("insert into Todos (Description, Status) values  (@Description, @Status)", todo);
+                _ = cnn.Execute("insert into Todos (Description) values (@Description)", todo);
             }
         }
 
@@ -31,7 +31,7 @@ namespace TodoList
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                _ = cnn.Execute("delete from Todos where Id=@Id", todo);
+                _ = cnn.Execute("delete from Todos where Id = @Id", todo);
             }
         }
 
@@ -39,7 +39,7 @@ namespace TodoList
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                _ = cnn.Execute("update Todos set Description=@Description, Status = @Status where Id = @Id", todo);
+                _ = cnn.Execute("update Todos set Description = @Description, Status = @Status where Id = @Id", todo);
             }
         }
         private static string LoadConnectionString(string id = "Default")

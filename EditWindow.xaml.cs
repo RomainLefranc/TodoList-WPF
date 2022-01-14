@@ -18,9 +18,12 @@ namespace TodoList
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            //update in db
+            if (todo.Description == "")
+            {
+                _ = MessageBox.Show("La description ne peut pas être vide");
+                return;
+            }
             SqliteDbAccess.UpdateTodo(todo);
-            // close window
             Close();
         }
 

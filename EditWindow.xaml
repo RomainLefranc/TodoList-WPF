@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoList"
         mc:Ignorable="d"
-        Title="Modification" ResizeMode="NoResize" SizeToContent="Height" Width="292">
+        Title="Modification" SizeToContent="Height" Width="292">
     <Grid x:Name="editTodoGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,11 +13,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,11,0,0" Padding="0,5,5,5" Height="26" Width="65"/>
-        <TextBox x:Name="description" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Margin="10,0" Grid.Row="1"/>
-        <Label Content="Status" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" Padding="0,5,5,5" Grid.Row="2" Height="26" Width="37"/>
-        <CheckBox x:Name="status" Content="Fait" HorizontalAlignment="Left" IsChecked="{Binding Status}" VerticalAlignment="Top" Margin="10,26,0,0" Grid.Row="2" Height="15" Width="39"/>
+        <TextBox x:Name="description" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Margin="10,0" Grid.Row="1" MaxHeight="100" VerticalScrollBarVisibility="Auto"/>
 
-        <Grid VerticalAlignment="Top" Margin="10,46,10,10" Grid.Row="2" Height="37">
+        <Grid VerticalAlignment="Top" Margin="10" Grid.Row="2" Height="37">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition/>

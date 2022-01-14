@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoList"
         mc:Ignorable="d"
-        Title="Todo list" Width="418.359" VerticalAlignment="Top" Height="296.233">
+        Title="Todo list" Width="624.848" VerticalAlignment="Top" Height="244.273">
     <Grid>
-        <DataGrid x:Name="todosList" Margin="10,36,10,0" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True" Height="210">
+        <DataGrid x:Name="todosList" Margin="10,36,10,10" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" CanUserResize="False" CanUserReorder="False" >
                     <DataGridTextColumn.ElementStyle>
@@ -16,14 +16,13 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridCheckBoxColumn Header = "Terminé ?" Binding = "{Binding Status}" CanUserResize="False" CanUserReorder="False" >
-                    <DataGridCheckBoxColumn.ElementStyle>
-                        <Style>
-                            <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
-                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
-                        </Style>
-                    </DataGridCheckBoxColumn.ElementStyle>
-                </DataGridCheckBoxColumn>
+                <DataGridTemplateColumn Header="Done">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="checkbox"  IsChecked="{Binding Status}"  HorizontalAlignment="Center" VerticalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Actions" CanUserResize="False" CanUserReorder="False" >
                     <DataGridTemplateColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">

@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace TodoList
 {
@@ -12,6 +15,20 @@ namespace TodoList
         public MainWindow()
         {
             InitializeComponent();
+
+            IHost host = Host.CreateDefaultBuilder().ConfigureAppConfiguration((hostingContext, configuration) =>
+            {
+                configuration.Sources.Clear();
+
+                IHostEnvironment env = hostingContext.HostingEnvironment;
+
+                _ = configuration
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true, true);
+
+                IConfigurationRoot configurationRoot = configuration.Build();
+            })
+            .Build();
             LoadTodos();
         }
 
@@ -27,6 +44,14 @@ namespace TodoList
             EditWindow editWindow = new EditWindow(selectedTodo);
             _ = editWindow.ShowDialog();
             LoadTodos();
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Todo selectedTodo = (sender as FrameworkElement).DataContext as Todo;
+            CheckBox cb = sender as CheckBox;
+            selectedTodo.Status = cb.IsChecked == true ? 1 : 0;
+            SqliteDbAccess.UpdateTodo(selectedTodo);
         }
 
         private void SelectDelete_Click(object sender, RoutedEventArgs e)
