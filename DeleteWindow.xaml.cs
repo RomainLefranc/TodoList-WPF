@@ -16,12 +16,8 @@ namespace TodoList
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO : delete in db
             SqliteDbAccess.DeleteTodo(todo);
-
-            // close window
             Close();
-            // TODO : refetch db data
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

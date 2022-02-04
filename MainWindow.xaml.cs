@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 
 namespace TodoList
 {
@@ -15,20 +13,6 @@ namespace TodoList
         public MainWindow()
         {
             InitializeComponent();
-
-            IHost host = Host.CreateDefaultBuilder().ConfigureAppConfiguration((hostingContext, configuration) =>
-            {
-                configuration.Sources.Clear();
-
-                IHostEnvironment env = hostingContext.HostingEnvironment;
-
-                _ = configuration
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true, true);
-
-                IConfigurationRoot configurationRoot = configuration.Build();
-            })
-            .Build();
             LoadTodos();
         }
 
