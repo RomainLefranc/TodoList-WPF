@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Suppression" ResizeMode="NoResize" SizeToContent="Height" Width="292">
     <Grid>
-        <Label Content="Voulez vous supprimez cet ligne ?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Padding="0,5,5,5" Height="26" Width="266"/>
+        <Label Content="Voulez vous supprimez cet ligne ?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" Padding="0,5,5,5" Height="26" Width="266"/>
 
-        <Grid VerticalAlignment="Top" Margin="10,36,10,12" Height="38">
+        <Grid VerticalAlignment="Top" Margin="10,26,10,10" Height="38">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition/>

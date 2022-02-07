@@ -18,16 +18,7 @@ namespace TodoList
 
         public void LoadTodos()
         {
-            Todos = SqliteDbAccess.LoadTodos();
-            todosList.ItemsSource = null;
-            todosList.ItemsSource = Todos;
-        }
-        private void SelectEdit_Click(object sender, RoutedEventArgs e)
-        {
-            Todo selectedTodo = (sender as FrameworkElement).DataContext as Todo;
-            EditWindow editWindow = new EditWindow(selectedTodo);
-            _ = editWindow.ShowDialog();
-            LoadTodos();
+            todosList.ItemsSource = SqliteDbAccess.LoadTodos();
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -38,19 +29,46 @@ namespace TodoList
             SqliteDbAccess.UpdateTodo(selectedTodo);
         }
 
-        private void SelectDelete_Click(object sender, RoutedEventArgs e)
-        {
-            Todo selectedTodo = (sender as FrameworkElement).DataContext as Todo;
-            DeleteWindow deleteWindow = new DeleteWindow(selectedTodo);
-            _ = deleteWindow.ShowDialog();
-            LoadTodos();
-        }
-
         private void OpenCreateWindow_Click(object sender, RoutedEventArgs e)
         {
-            CreateWindow createWindow = new CreateWindow();
+            CreateWindow createWindow = new CreateWindow
+            {
+                Owner = this,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
             _ = createWindow.ShowDialog();
-            LoadTodos();
+            if (createWindow.create)
+            {
+                LoadTodos();
+            }
+        }
+
+        private void OpenEditWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Todo todo = (Todo)todosList.SelectedItem;
+            if (todo != null)
+            {
+                EditWindow editWindow = new EditWindow(todo) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+                _ = editWindow.ShowDialog();
+                if (editWindow.update)
+                {
+                    LoadTodos();
+                }
+            }
+        }
+
+        private void OpenDeleteWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Todo todo = (Todo)todosList.SelectedItem;
+            if (todo != null)
+            {
+                DeleteWindow deleteWindow = new DeleteWindow(todo) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+                _ = deleteWindow.ShowDialog();
+                if (deleteWindow.delete)
+                {
+                    LoadTodos();
+                }
+            }
         }
     }
 }

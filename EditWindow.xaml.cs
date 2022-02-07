@@ -8,6 +8,7 @@ namespace TodoList
     public partial class EditWindow : Window
     {
         public Todo todo;
+        public bool update = false;
 
         public EditWindow(Todo selectedTodo)
         {
@@ -18,12 +19,15 @@ namespace TodoList
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
+
+
             if (todo.Description == "")
             {
                 _ = MessageBox.Show("La description ne peut pas être vide");
                 return;
             }
             SqliteDbAccess.UpdateTodo(todo);
+            update = true;
             Close();
         }
 

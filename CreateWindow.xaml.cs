@@ -5,6 +5,7 @@ namespace TodoList
     public partial class CreateWindow : Window
     {
         public Todo todo = new Todo();
+        public bool create = false;
         public CreateWindow()
         {
             InitializeComponent();
@@ -19,6 +20,7 @@ namespace TodoList
                 return;
             }
             SqliteDbAccess.SaveTodo(todo);
+            create = true;
             Close();
         }
 

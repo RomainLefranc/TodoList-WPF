@@ -7,42 +7,30 @@
         mc:Ignorable="d"
         Title="Todo list" Width="624.848" VerticalAlignment="Top" Height="244.273">
     <Grid>
-        <DataGrid x:Name="todosList" Margin="10,36,10,10" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="todosList" Margin="10,36,10,10" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="Horizontal" HeadersVisibility="None">
+            
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" CanUserResize="False" CanUserReorder="False" >
+                <DataGridTemplateColumn Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="checkbox"  IsChecked="{Binding Status}"  HorizontalAlignment="Center" VerticalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked" >
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn  Binding="{Binding Description}" Width="*" CanUserResize="False" CanUserReorder="False" >
                     <DataGridTextColumn.ElementStyle>
                         <Style>
                             <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTemplateColumn Header="Done">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox x:Name="checkbox"  IsChecked="{Binding Status}"  HorizontalAlignment="Center" VerticalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Actions" CanUserResize="False" CanUserReorder="False" >
-                    <DataGridTemplateColumn.HeaderStyle>
-                        <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="HorizontalContentAlignment"
-                 Value="Center" />
-                        </Style>
-                    </DataGridTemplateColumn.HeaderStyle>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button x:Name="selectEdit" Click="SelectEdit_Click" Margin="1,0,1,0" Width="60" Height="20" >Modifier</Button>
-                                <Button x:Name="selectDelete" Click="SelectDelete_Click" Width="60"  Height="20"  Margin="1,0,1,0" >Supprimer</Button>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
 
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Todo list" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Padding="0" RenderTransformOrigin="0.551,-0.358" Height="20"/>
-        <Button x:Name="openCreateWindow" Content="Ajouter" VerticalAlignment="Top" Margin="0,11,10,0" Click="OpenCreateWindow_Click" HorizontalAlignment="Right" Width="84"/>
+        <Button x:Name="openCreateWindow" Content="Ajouter" VerticalAlignment="Top" Margin="0,11,10,0" Click="OpenCreateWindow_Click" HorizontalAlignment="Right" Width="64"/>
+        <Button x:Name="openDeleteWindow" Content="Supprimer" VerticalAlignment="Top" Margin="0,11,79,0" Click="OpenDeleteWindow_Click" HorizontalAlignment="Right" Width="75"/>
+        <Button x:Name="openEditWindow" Content="Modifier" VerticalAlignment="Top" Margin="0,11,159,0" Click="OpenEditWindow_Click" HorizontalAlignment="Right" Width="64"/>
     </Grid>
 </Window>

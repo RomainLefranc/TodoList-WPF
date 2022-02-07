@@ -8,6 +8,8 @@ namespace TodoList
     public partial class DeleteWindow : Window
     {
         public Todo todo;
+        public bool delete = false;
+
         public DeleteWindow(Todo selectedTodo)
         {
             todo = selectedTodo;
@@ -17,6 +19,7 @@ namespace TodoList
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             SqliteDbAccess.DeleteTodo(todo);
+            delete = true;
             Close();
         }
 
