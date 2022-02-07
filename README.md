@@ -12,19 +12,19 @@ La liste doit être sauvegardé dans une base de données SQLite
 
 ## Etapes de travail
 - Conception de la maquette
-- Definitions des taches à faire
-- Developpement de l'application
+- Définitions des tâches à faire
+- Développement de l'application
 
 ## Taches réalisé
 | En tant que | Je peux |
 |-----------|-----------|
-| utilisateur | ajouter une todo a la liste |
+| utilisateur | ajouter une todo à la liste |
 |     utilisateur      |      marquer une todo comme terminé     |
 |     utilisateur      |      modifier une todo dans la liste     |
 |    utilisateur       |    supprimer une todo de la liste       |
 
-## Ameliorations
+## Améliorations
 Interface plus ergonomique
 
-## Deploiement
-Le deploiement de l'application peut être fait en utilisant Visual Studio
+## Déploiement
+Le déploiement est fait en utilisant Visual Studio
