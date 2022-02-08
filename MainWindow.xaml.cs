@@ -32,12 +32,9 @@ namespace TodoList
 
         private void OpenCreateWindow_Click(object sender, RoutedEventArgs e)
         {
-            CreateWindow createWindow = new CreateWindow
-            {
-                Owner = this,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner
-            };
+            CreateWindow createWindow = new CreateWindow { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
             _ = createWindow.ShowDialog();
+            // si il y a creation, recharger la todolist
             if (createWindow.create)
             {
                 LoadTodos();
@@ -47,28 +44,34 @@ namespace TodoList
         private void OpenEditWindow_Click(object sender, RoutedEventArgs e)
         {
             Todo todo = (Todo)todosList.SelectedItem;
-            if (todo != null)
+            if (todo == null)
             {
-                EditWindow editWindow = new EditWindow(todo) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
-                _ = editWindow.ShowDialog();
-                if (editWindow.update)
-                {
-                    LoadTodos();
-                }
+                _ = MessageBox.Show("Aucun todo selectionné");
+                return;
+            }
+            EditWindow editWindow = new EditWindow(todo) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+            _ = editWindow.ShowDialog();
+            // si il y a modification, recharger la todolist
+            if (editWindow.update)
+            {
+                LoadTodos();
             }
         }
 
         private void OpenDeleteWindow_Click(object sender, RoutedEventArgs e)
         {
             System.Collections.IList todo = todosList.SelectedItems;
-            if (todo.Count > 0)
+            if (todo.Count == 0)
             {
-                DeleteWindow deleteWindow = new DeleteWindow(todo) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
-                _ = deleteWindow.ShowDialog();
-                if (deleteWindow.delete)
-                {
-                    LoadTodos();
-                }
+                _ = MessageBox.Show("Aucun todo selectionné");
+                return;
+            }
+            DeleteWindow deleteWindow = new DeleteWindow(todo) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+            _ = deleteWindow.ShowDialog();
+            // si il y a suppression, recharger la todolist
+            if (deleteWindow.delete)
+            {
+                LoadTodos();
             }
         }
     }

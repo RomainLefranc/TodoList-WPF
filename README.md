@@ -24,7 +24,10 @@ La liste doit être sauvegardé dans une base de données SQLite
 |    utilisateur       |    supprimer une todo de la liste       |
 
 ## Améliorations
-Interface plus ergonomique
+- Interface plus ergonomique
+- Tri des todos
+- Suppression de plusieurs todo à la fois
+
 
 ## Déploiement
 Le déploiement est fait en utilisant Visual Studio
