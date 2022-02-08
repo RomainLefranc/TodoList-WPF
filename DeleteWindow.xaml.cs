@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-
 namespace TodoList
 {
     /// <summary>
@@ -7,18 +6,26 @@ namespace TodoList
     /// </summary>
     public partial class DeleteWindow : Window
     {
-        public Todo todo;
+        public System.Collections.IList todos;
         public bool delete = false;
 
-        public DeleteWindow(Todo selectedTodo)
+        public DeleteWindow(System.Collections.IList selectedTodos)
         {
-            todo = selectedTodo;
             InitializeComponent();
+            question.Content = "Voulez vous supprimez ce todo ?";
+            if (selectedTodos.Count > 1)
+            {
+                question.Content = "Voulez vous supprimez ces todos ?";
+            }
+            todos = selectedTodos;
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            SqliteDbAccess.DeleteTodo(todo);
+            foreach (Todo todo in todos)
+            {
+                SqliteDbAccess.DeleteTodo(todo);
+            }
             delete = true;
             Close();
         }

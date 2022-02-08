@@ -19,8 +19,6 @@ namespace TodoList
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-
-
             if (todo.Description == "")
             {
                 _ = MessageBox.Show("La description ne peut pas être vide");

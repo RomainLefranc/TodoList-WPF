@@ -203,6 +203,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="selectedTodo.cs" />
     <Compile Include="SqliteDbAccess.cs" />
     <Compile Include="Todo.cs" />
     <Compile Include="DeleteWindow.xaml.cs">

@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoList"
         mc:Ignorable="d"
-        Title="Todo list" Width="624.848" VerticalAlignment="Top" Height="244.273">
+        Title="Todo list" Width="624.848" VerticalAlignment="Top" Height="210.274">
     <Grid>
-        <DataGrid x:Name="todosList" Margin="10,36,10,10" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="Horizontal" HeadersVisibility="None">
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37"/>
+            <RowDefinition/>
+            <RowDefinition Height="19"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="todosList" Margin="10,0" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="Horizontal" Grid.Row="1">
+
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="30">
                     <DataGridTemplateColumn.CellTemplate>
@@ -29,8 +34,9 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="openCreateWindow" Content="Ajouter" VerticalAlignment="Top" Margin="0,11,10,0" Click="OpenCreateWindow_Click" HorizontalAlignment="Right" Width="64"/>
-        <Button x:Name="openDeleteWindow" Content="Supprimer" VerticalAlignment="Top" Margin="0,11,79,0" Click="OpenDeleteWindow_Click" HorizontalAlignment="Right" Width="75"/>
-        <Button x:Name="openEditWindow" Content="Modifier" VerticalAlignment="Top" Margin="0,11,159,0" Click="OpenEditWindow_Click" HorizontalAlignment="Right" Width="64"/>
+        <Button x:Name="openCreateWindow" Content="Ajouter" VerticalAlignment="Top" Margin="0,11,10,0" Click="OpenCreateWindow_Click" HorizontalAlignment="Right" Width="64" Height="20"/>
+        <Button x:Name="openDeleteWindow" Content="Supprimer" VerticalAlignment="Top" Margin="0,11,79,0" Click="OpenDeleteWindow_Click" HorizontalAlignment="Right" Width="75" Height="20"/>
+        <Button x:Name="openEditWindow" Content="Modifier" VerticalAlignment="Top" Margin="0,11,159,0" Click="OpenEditWindow_Click" HorizontalAlignment="Right" Width="64" Height="20"/>
+        <Label x:Name="version" Content="" Margin="458,0,10,1" VerticalAlignment="Bottom" Height="18" Grid.Row="2" Padding="0" HorizontalContentAlignment="Right"/>
     </Grid>
 </Window>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Reflection;
 namespace TodoList
 {
     /// <summary>
@@ -14,6 +14,7 @@ namespace TodoList
         {
             InitializeComponent();
             LoadTodos();
+            version.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         public void LoadTodos()
@@ -59,8 +60,8 @@ namespace TodoList
 
         private void OpenDeleteWindow_Click(object sender, RoutedEventArgs e)
         {
-            Todo todo = (Todo)todosList.SelectedItem;
-            if (todo != null)
+            System.Collections.IList todo = todosList.SelectedItems;
+            if (todo.Count > 0)
             {
                 DeleteWindow deleteWindow = new DeleteWindow(todo) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
                 _ = deleteWindow.ShowDialog();
